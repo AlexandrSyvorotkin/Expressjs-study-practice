@@ -1,7 +1,6 @@
 const express = require('express')
 const path = require('path')
 const exphbs = require('express-handlebars')
-const { publicDecrypt } = require('crypto')
 
 
 const app = express()
@@ -18,24 +17,34 @@ app.set('views', 'views')
 app.use(express.static('public'))
 
 
-
 app.get('/', (req, res) => {
     // res.status(200)
     // res.sendFile(path.join(__dirname, 'views', 'index.html'))
 
-    res.render('index')
+    res.render('index', {
+        title: 'Главная страница',
+        isHome: true
+    })
 
 })
 
-app.get('/about', (req, res)=> {
+app.get('/add', (req, res)=> {
     // res.sendFile(path.join(__dirname, 'views', 'about.html'))
 
-    res.render('about')
+    res.render('add', {
+        title: 'Добавить курс',
+        isAdd: true
+    })
 })
 
+app.get('/courses', (req, res)=> {
+    // res.sendFile(path.join(__dirname, 'views', 'about.html'))
 
-
-
+    res.render('courses', {
+        title: 'Курсы',
+        isCourses: true
+    })
+})
 
 
 
